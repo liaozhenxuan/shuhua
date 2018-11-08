@@ -66,7 +66,7 @@ class ProductController extends Controller
 
     private function form()
     {
-        $zuoping = Category::where('sign','=','zuoping')->first();
+        $zuoping = Category::where('sign','=','product')->first();
         $types = Category::where('parent_id','=',$zuoping->id)->get();
         $type_options = [];
         foreach ($types as $type){
