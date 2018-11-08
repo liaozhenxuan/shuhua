@@ -21,7 +21,7 @@
                         <em><a href="{{URL::asset('/')}}/product/show?id={{$pro->id}}" target="_blank">
                                 <img src="{{URL::asset('/')}}backend/{{$pro->img_url}}"></a></em>
                         <h1>
-                            <a href="{{URL::asset('/')}}/product/show?id={{$pro->id}}" target="_blank" title="汪真谦书画作品">龙马精神之龙</a>
+                            <a href="{{URL::asset('/')}}/product/show?id={{$pro->id}}" target="_blank" title="{{$pro->title}}">{{$pro->title}}</a>
                         </h1>
                     </li>
                     <!--后台注明图片上传尺寸：180px*240px-->
