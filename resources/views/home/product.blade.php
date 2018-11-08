@@ -8,7 +8,7 @@
         <!--左侧start-->
         <div class="sideleft">
             <div class="lanmu_title">
-                <h1>书画家简介</h1>
+                <h1>作品集</h1>
                 <p class="breadNav">您当前所在位置 &gt; <a href="{{URL::asset('/')}}">首页</a>
                     &gt; <span
                             class="ztcolor"><a href="{{URL::asset('/')}}product">作品集</a></span></p>
