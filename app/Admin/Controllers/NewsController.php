@@ -89,10 +89,10 @@ class NewsController extends Controller
 
             });
             $form->display('id','ID');
-            $form->text('title','标题');
-            $form->image('img_url','图片');
-            $form->select('type', '作品类型')->options($type_options);
-            $form->textarea('text','文章')->rows(20);
+            $form->text('title','标题')->required();
+            $form->image('img_url','图片')->required();
+            $form->select('type', '作品类型')->options($type_options)->required();
+            $form->textarea('text','文章')->rows(20)->required();
             $form->text('order','排序');
         });
     }
