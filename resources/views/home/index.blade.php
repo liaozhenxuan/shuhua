@@ -68,7 +68,7 @@
                     <ul class="list">
                         @foreach($footer as $foot)
                         <li style="">
-                            <a href="#" target="_blank">
+                            <a href="{{URL::asset('/')}}product" target="_blank">
                                 <img src="{{URL::asset('/')}}backend/{{$foot->img_url}}"></a>
                             <p>{{$foot->title}}</p>
                         </li><!--后台注明上传尺寸：367px*265px-->
