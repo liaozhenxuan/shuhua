@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Category;
+use App\Models\Footer;
 use App\Models\Gry;
 use App\Models\News;
 use App\Models\Product;
@@ -27,12 +28,15 @@ class IndexController extends CommonController
         $news = News::where('type', '=', '1')->take(5)->get();
         //常识
         $changshi = News::where('type', '=', '2')->take(5)->get();
+        //底部图
+        $footer = Footer::where('id','>','0')->orderBy('order')->take(3)->get();
 
         $data = [
             'author' => $author,
             'products' => $products,
             'news' => $news,
             'changshi' => $changshi,
+            'footer' => $footer,
         ];
 
         return view('home.index', $data);

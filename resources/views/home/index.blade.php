@@ -66,21 +66,18 @@
             <div id="slide_x" class="slide_x">
                 <div class="box">
                     <ul class="list">
+                        @foreach($footer as $foot)
                         <li style="">
                             <a href="#" target="_blank">
-                                <img src="{{URL::asset('/')}}home/149084389448018.jpg"></a>
-                            <p>画</p>
+                                <img src="{{URL::asset('/')}}backend/{{$foot->img_url}}"></a>
+                            <p>{{$foot->title}}</p>
                         </li><!--后台注明上传尺寸：367px*265px-->
-                        <li><a href="#" target="_blank"><img
-                                        src="{{URL::asset('/')}}home/149085974470075.jpg"></a>
-                            <p>书法</p></li><!--后台注明上传尺寸：367px*265px-->
-                        <li><a href="#" target="_blank"><img
-                                        src="{{URL::asset('/')}}home/149084430433985.jpg"></a>
-                            <p>水墨</p></li><!--后台注明上传尺寸：367px*265px-->  </ul>
+                        @endforeach
+                    </ul>
                 </div>
                 <ul class="btn">
-                    <li class="b_1">1</li>
-                    <li class="b_2 selected">2</li>
+                    <li class="b_1 selected">1</li>
+                    <li class="b_2 ">2</li>
                     <li class="b_3">3</li>
                     <!-- <li class="b_4">4</li>
                      <li class="b_4">5</li>-->

@@ -26,6 +26,8 @@ Route::group([
         $route->resource('gry', 'GryController');
 
         $route->resource('news','NewsController');
+
+        $route->resource('footer','FooterController');
     });
 
     $router->resource('product', 'ProductController');
