@@ -75,7 +75,7 @@ class NewsController extends Controller
     {
         $type_options = [
             '1'=>'新闻资讯',
-            '2'=>'书画尝试'
+            '2'=>'书画常识'
         ];
 
         return Admin::form(News::class,function (Form $form) use ($type_options) {
