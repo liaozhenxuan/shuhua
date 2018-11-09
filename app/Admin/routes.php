@@ -24,8 +24,12 @@ Route::group([
         $route->resource('author', 'AuthorController', ['except' => ['create']]);
 
         $route->resource('gry', 'GryController');
+
+        $route->resource('news','NewsController');
     });
 
     $router->resource('product', 'ProductController');
+
+
 
 });

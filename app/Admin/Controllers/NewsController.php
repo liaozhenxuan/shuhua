@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
+use App\Models\News;
 use App\Models\Product;
 use Encore\Admin\Auth\Database\Administrator;
 use Encore\Admin\Facades\Admin;
@@ -29,13 +30,11 @@ class NewsController extends Controller
 
     private function grid()
     {
-        $zuoping = Category::where('sign','=','zuoping')->first();
-        $types = Category::where('parent_id','=',$zuoping->id)->get();
-        $type_options = [];
-        foreach ($types as $type){
-            $type_options[$type->id] = $type->title;
-        }
-        return Admin::grid(Product::class, function (Grid $grid) use ($type_options){
+        $type_options = [
+            '1'=>'新闻资讯',
+            '2'=>'书画常识'
+        ];
+        return Admin::grid(News::class, function (Grid $grid) use ($type_options) {
             $grid->filter(function($filter) use ($type_options){
 
                 // 去掉默认的id过滤器
@@ -53,7 +52,9 @@ class NewsController extends Controller
             });
             $grid->title('标题');
             $grid->img_url('图片')->image();
-            $grid->size('规格');
+            $grid->text('内容')->display(function ($obj){
+                return str_limit($obj, $limit = 20, $end = '...');
+            });
             $grid->hit('点击量');
             $grid->actions(function ($actions) {
                 $actions->disableView();
@@ -64,7 +65,7 @@ class NewsController extends Controller
     public function create()
     {
         return Admin::content(function (Content $content) {
-            $content->header('创建作品');
+            $content->header('创建文章');
             $content->description('创建');
             $content->body($this->form());
         });
@@ -72,14 +73,12 @@ class NewsController extends Controller
 
     private function form()
     {
-        $zuoping = Category::where('sign','=','zuoping')->first();
-        $types = Category::where('parent_id','=',$zuoping->id)->get();
-        $type_options = [];
-        foreach ($types as $type){
-            $type_options[$type->id] = $type->title;
-        }
+        $type_options = [
+            '1'=>'新闻资讯',
+            '2'=>'书画尝试'
+        ];
 
-        return Admin::form(Product::class,function (Form $form) use ($type_options) {
+        return Admin::form(News::class,function (Form $form) use ($type_options) {
             $form->footer(function ($footer) {
                 // 去掉`查看`checkbox
                 $footer->disableViewCheck();
@@ -93,7 +92,7 @@ class NewsController extends Controller
             $form->text('title','标题');
             $form->image('img_url','图片');
             $form->select('type', '作品类型')->options($type_options);
-            $form->text('size','规格');
+            $form->textarea('text','文章')->rows(20);
             $form->text('order','排序');
         });
     }
@@ -111,7 +110,7 @@ class NewsController extends Controller
     public function edit($id)
     {
         return Admin::content(function (Content $content) use ($id){
-            $content->header('编辑banner图');
+            $content->header('编辑文章');
             $content->description('编辑');
             $content->body($this->form()->edit($id));
         });
